@@ -23,6 +23,7 @@ import com.spring.employeeManagement.utils.Constant.StatusFlag;
 import io.micrometer.common.util.StringUtils;
 
 @Service
+@Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired

@@ -17,7 +17,6 @@ import com.spring.employeeManagement.dto.response.BaseResponse;
 import com.spring.employeeManagement.dto.response.DepartmentResp;
 import com.spring.employeeManagement.entity.Department;
 import com.spring.employeeManagement.repository.DepartmentRepository;
-import com.spring.employeeManagement.repository.EmployeeRepository;
 import com.spring.employeeManagement.service.DepartmentService;
 import com.spring.employeeManagement.utils.Constant.StatusFlag;
 
@@ -29,9 +28,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
 
     @Override
     public BaseResponse editDepartment(DepartmentEditReq req) {
@@ -55,12 +51,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public BaseResponse getDepartmentById(DepartmentGetReq req) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getDepartmentById'");
     }
 
     @Override
+    @Transactional(readOnly = true)
     public BaseResponse getAllDepartment(BaseRequest req) {
         List<Department> departments = departmentRepository.findAll();
         List<DepartmentResp> response = new ArrayList<>();
