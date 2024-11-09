@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.employeeManagement.dto.request.BaseRequest;
 import com.spring.employeeManagement.dto.request.EmployeeEditReq;
 import com.spring.employeeManagement.dto.response.BaseResponse;
+import com.spring.employeeManagement.dto.response.DepartmentResp;
 import com.spring.employeeManagement.dto.response.EmployeeInformationResp;
 import com.spring.employeeManagement.entity.Employee;
 import com.spring.employeeManagement.repository.EmployeeRepository;
@@ -59,10 +60,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional(readOnly = true)
     public BaseResponse getEmployeeInformation(BaseRequest req) {
-        Employee entity = employeeRepository.findById(StringUtils.isEmpty(req.getId()) ? "" : req.getId()).get();
+        Employee entity = employeeRepository
+                .findEmployeeInformation(StringUtils.isEmpty(req.getId()) ? "" : req.getId());
+                
         if (entity != null) {
             EmployeeInformationResp response = new EmployeeInformationResp();
             BeanUtils.copyProperties(entity, response);
+            if (entity.getDepartment() != null) {
+                response.setDepartment(DepartmentResp.builder().id(entity.getDepartmentId())
+                        .departmentName(entity.getDepartment().getDepartmentName())
+                        .departmentNameEn(entity.getDepartment().getDepartmentNameEn())
+                        .departmentCode(entity.getDepartment().getDepartmentCode()).build());
+            }
             return new BaseResponse(response);
         }
         return new BaseResponse(HttpResponse.BAD_REQUEST.getHttpStatusCode(), HttpResponse.BAD_REQUEST.getStatusCode());

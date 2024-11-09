@@ -14,7 +14,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     // * join department table
     @Query(value = "SELECT e.* FROM emp_data e " +
             "JOIN department de ON e.department_id = de.id " +
-            "WHERE de.id = ?1", nativeQuery = true)
-    List<Employee> findByDepartmentId(String departmentId);
+            "WHERE e.id = ?1", nativeQuery = true)
+    Employee findEmployeeInformation(String employeeId);
 
+    List<Employee> findByDepartmentId(String departmentId);
 }

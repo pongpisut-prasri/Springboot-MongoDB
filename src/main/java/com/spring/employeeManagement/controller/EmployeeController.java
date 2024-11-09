@@ -12,7 +12,7 @@ import com.spring.employeeManagement.dto.request.EmployeeEditReq;
 import com.spring.employeeManagement.dto.request.EmployeeGetReq;
 import com.spring.employeeManagement.service.EmployeeService;
 
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -23,7 +23,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/editEmployee")
-    public ResponseEntity<?> editEmployee(@RequestBody EmployeeEditReq req) {
+    public ResponseEntity<?> editEmployee(@RequestBody @Valid EmployeeEditReq req) {
         try {
             return ResponseEntity.ok().body(employeeService.editEmployee(req));
         } catch (Exception e) {

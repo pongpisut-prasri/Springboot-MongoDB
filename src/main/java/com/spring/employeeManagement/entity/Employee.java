@@ -3,6 +3,8 @@ package com.spring.employeeManagement.entity;
 import java.time.LocalDate;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,6 +46,7 @@ public class Employee extends BaseEntity{
     private String departmentId;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "department_id",nullable = true,insertable = false,updatable = false)
     private Department department;
 
