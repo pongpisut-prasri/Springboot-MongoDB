@@ -2,7 +2,6 @@ package com.spring.employeeManagement.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -22,5 +21,9 @@ public class BaseResponse {
     public BaseResponse(){
         this.code="200";
         this.description="SUCCESS";
+    }
+    public BaseResponse(String code ,String description){
+        this.code=code;
+        this.description=description;
     }
 }

@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.employeeManagement.dto.request.BaseRequest;
 import com.spring.employeeManagement.dto.request.EmployeeEditReq;
+import com.spring.employeeManagement.dto.request.EmployeeGetReq;
 import com.spring.employeeManagement.service.EmployeeService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -22,6 +26,33 @@ public class EmployeeController {
     public ResponseEntity<?> editEmployee(@RequestBody EmployeeEditReq req) {
         try {
             return ResponseEntity.ok().body(employeeService.editEmployee(req));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e);
+        }
+    }
+
+    @PostMapping("/getEmployeeInformation")
+    public ResponseEntity<?> getEmployeeInformation(@RequestBody BaseRequest req) {
+        try {
+            return ResponseEntity.ok().body(employeeService.getEmployeeInformation(req));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e);
+        }
+    }
+
+    @PostMapping("/getAllEmployees")
+    public ResponseEntity<?> getAllEmployees(@RequestBody BaseRequest req) {
+        try {
+            return ResponseEntity.ok().body(null);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e);
+        }
+    }
+
+    @PostMapping("/getEmployeeByDepartment")
+    public ResponseEntity<?> getEmployeeByDepartment(@RequestBody EmployeeGetReq req) {
+        try {
+            return ResponseEntity.ok().body(employeeService.getEmployeeByDepartment(req.getDepartmentId()));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e);
         }

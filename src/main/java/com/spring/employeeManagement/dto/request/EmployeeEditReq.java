@@ -1,15 +1,15 @@
 package com.spring.employeeManagement.dto.request;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class EmployeeEditReq {
-    private String id;
+public class EmployeeEditReq extends BaseRequest{
     private String name;
     private String surname;
-    private LocalDateTime dateOfBirth; 
+    private LocalDate dateOfBirth;
+    private String departmentId;
 }
