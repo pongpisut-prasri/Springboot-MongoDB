@@ -62,11 +62,11 @@
             <scope>runtime</scope>
         </dependency>
         <!-- JWT Library -->
-        <dependency>
+        <!-- <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.12.6</version>
-        </dependency>
+        </dependency> -->
     </dependencies>
 
     <build>
